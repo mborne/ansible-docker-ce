@@ -1,0 +1,79 @@
+---
+
+#-------------------------------------------------------------------------------
+# Install docker service
+#-------------------------------------------------------------------------------
+
+- name: 'Install apt.dockerproject.org key'
+  apt_key:
+    url: "https://download.docker.com/linux/ubuntu/gpg"
+    state: present
+
+- name: 'Install "apt-transport-https" package'
+  apt:
+    name: apt-transport-https
+    update_cache: yes
+
+- name: 'Generate /etc/apt/sources.list.d/docker.list'
+  template:
+    src: 'etc/apt/sources.list.d/docker.list.j2'
+    dest: '/etc/apt/sources.list.d/docker.list'
+
+- name: Install "docker-ce" package
+  apt:
+    name: docker-ce
+    update_cache: yes
+
+#-------------------------------------------------------------------------------
+# Install ansible requirements
+#-------------------------------------------------------------------------------
+
+- name: Install "python-pip" package
+  apt:
+    name: python-pip
+
+- name: Install python docker-py
+  pip:
+    name: "docker-py"
+    state: present
+
+#-------------------------------------------------------------------------------
+# Install docker-compose
+#-------------------------------------------------------------------------------
+
+- name: Install "docker-compose"
+  get_url:
+    url: "https://github.com/docker/compose/releases/download/{{ docker_compose_version }}/docker-compose-linux-{{ ansible_architecture|lower }}"
+    dest: /usr/local/bin/docker-compose
+    mode: "u=rxw,g=rx,o=rx"
+    force: true
+
+#-------------------------------------------------------------------------------
+# configure docker daemon
+#-------------------------------------------------------------------------------
+
+- name: 'Generate /etc/docker/daemon.json'
+  template:
+    src: 'etc/docker/daemon.json.j2'
+    dest: '/etc/docker/daemon.json'
+  notify: docker-restart
+
+#-------------------------------------------------------------------------------
+# Configure logrotate for containers
+#-------------------------------------------------------------------------------
+
+- name: Configure logrotate
+  template:
+    src: 'etc/logrotate.d/docker.j2'
+    dest: '/etc/logrotate.d/docker'
+
+#-------------------------------------------------------------------------------
+# Create docker networks
+#-------------------------------------------------------------------------------
+
+- name: Create docker networks
+  docker_network:
+    name: "{{ item.name }}"
+    ipam_options:
+      subnet: "{{ item.subnet }}"
+  with_items: "{{ docker_networks }}"
