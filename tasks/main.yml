@@ -32,9 +32,9 @@
   apt:
     name: python-pip
 
-- name: Install python docker-py
+- name: Install python module for docker
   pip:
-    name: "docker-py"
+    name: "docker"
     state: present
 
 #-------------------------------------------------------------------------------
@@ -74,6 +74,6 @@
 - name: Create docker networks
   docker_network:
     name: "{{ item.name }}"
-    ipam_options:
-      subnet: "{{ item.subnet }}"
+    ipam_config:
+      - subnet: "{{ item.subnet }}"
   with_items: "{{ docker_networks }}"
