@@ -2,6 +2,26 @@
 
 Docker installation and configuration.
 
-## Ressources
+## Usage
 
-https://www.digitalocean.com/community/tutorials/how-to-audit-docker-host-security-with-docker-bench-for-security-on-ubuntu-16-04
+See [defaults/main.yml](defaults/main.yml) to get the list of variables.
+
+Sample `requirements.yml` :
+
+```
+- name: docker-ce
+  src: git+https://gogs.quadtreeworld.net/ansible/docker-ce.git
+  version: v0.3.0
+```
+
+Sample playbook :
+
+```yaml
+---
+- name: Install docker
+  hosts: all
+  become: yes
+  become_method: sudo
+  roles:
+    - docker-ce
+```

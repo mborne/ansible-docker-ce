@@ -1,3 +1,8 @@
 # {{ ansible_managed }}
+# arch : {{ ansible_architecture }}
 
+{% if ansible_architecture == "x86_64" %}
 deb [arch=amd64] https://download.docker.com/linux/{{ ansible_distribution|lower }} {{ ansible_lsb.codename|lower }} stable
+{% else %}
+deb https://download.docker.com/linux/raspbian/ {{ ansible_lsb.codename|lower }} stable
+{% endif %}

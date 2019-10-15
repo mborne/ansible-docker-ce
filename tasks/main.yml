@@ -28,9 +28,14 @@
 # Install ansible requirements
 #-------------------------------------------------------------------------------
 
-- name: Install "python-pip" package
+- name: Install "python3-pip" package
   apt:
-    name: python-pip
+    name: python3-pip
+
+- name: Uninstall old python module for docker
+  pip:
+    name: "docker-py"
+    state: absent
 
 - name: Install python module for docker
   pip:
@@ -40,13 +45,11 @@
 #-------------------------------------------------------------------------------
 # Install docker-compose
 #-------------------------------------------------------------------------------
-
-- name: Install "docker-compose"
-  get_url:
-    url: "https://github.com/docker/compose/releases/download/{{ docker_compose_version }}/docker-compose-linux-{{ ansible_architecture|lower }}"
-    dest: /usr/local/bin/docker-compose
-    mode: "u=rxw,g=rx,o=rx"
-    force: true
+- name: Install docker-compose
+  pip:
+    name: "docker-compose=={{ docker_compose_version }}"
+    state: present
+  become: true
 
 #-------------------------------------------------------------------------------
 # configure docker daemon
