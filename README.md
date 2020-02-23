@@ -26,9 +26,9 @@ Sample playbook :
     - docker-ce
 ```
 
-## Troubleshooting
+## Troubleshooting
 
-For rasbperries, `aufs-dkms` should be removed to avoid troubles :
+For rasbperries, `aufs-dkms` should be removed to avoid problems :
 
 ```bash
 sudo apt-get purge aufs-dkms
