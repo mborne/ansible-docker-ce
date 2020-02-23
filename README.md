@@ -25,3 +25,12 @@ Sample playbook :
   roles:
     - docker-ce
 ```
+
+## Troubleshooting
+
+For rasbperries, `aufs-dkms` should be removed to avoid troubles :
+
+```bash
+sudo apt-get purge aufs-dkms
+```
+
