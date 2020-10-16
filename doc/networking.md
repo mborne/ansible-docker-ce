@@ -12,7 +12,7 @@ Avec la configuration suivante au niveau `/etc/docker/daemon.json` :
 }
 ```
 
-`bip` et `fixed-cidr` amène à la configuration suivante au niveau du `bridge` par défaut :
+* `bip` amène à la configuration suivante au niveau du `bridge` par défaut :
 
 ```bash
 docker network inspect bridge | jq '.[0].IPAM'
@@ -29,7 +29,9 @@ docker network inspect bridge | jq '.[0].IPAM'
 }
 ```
 
-`default-address-pools` amène le comportement suivant au niveau de la création des réseaux nommés :
+* `fixed-cidr` permet de réserver les IP `192.168.199.[0-127]` pour des allocations statiques.
+
+* `default-address-pools` amène le comportement suivant au niveau de la création des réseaux nommés :
 
 ```bash
 docker network create net1
