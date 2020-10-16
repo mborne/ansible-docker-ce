@@ -69,14 +69,3 @@
   template:
     src: 'etc/logrotate.d/docker.j2'
     dest: '/etc/logrotate.d/docker'
-
-#-------------------------------------------------------------------------------
-# Create docker networks
-#-------------------------------------------------------------------------------
-
-- name: Create docker networks
-  docker_network:
-    name: "{{ item.name }}"
-    ipam_config:
-      - subnet: "{{ item.subnet }}"
-  with_items: "{{ docker_networks }}"
