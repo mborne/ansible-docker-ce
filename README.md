@@ -11,7 +11,7 @@ Sample `requirements.yml` :
 ```
 - name: docker-ce
   src: git+https://gogs.quadtreeworld.net/ansible/docker-ce.git
-  version: v0.3.0
+  version: v1.0.0
 ```
 
 Sample playbook :

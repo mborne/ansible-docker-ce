@@ -2,14 +2,15 @@
     "data-root": "{{ docker_data_root }}",
     "storage-driver": "{{ docker_storage_driver }}",
 
-    "bip": "192.168.199.1/24",
-    "fixed-cidr": "192.168.199.1/25",
-    "default-address-pools" : [
-        {"base" : "192.168.200.0/23","size" : 28}
-    ],
+{% if docker_dns|length > 0 %}
+    "dns": {{ docker_dns | to_json }},
+{% endif %}
+    "bip": "{{ docker_bip }}",
+    "fixed-cidr": "{{ docker_fixed_cidr }}",
+    "default-address-pools" : {{ docker_default_address_pools | to_json }},
 
-    "icc": false,
-    "live-restore": true,
-    "userland-proxy": false,
-    "no-new-privileges": true
+    "icc": {{ docker_icc | to_json }},
+    "live-restore": {{ docker_live_restore | to_json }},
+    "userland-proxy": {{ docker_userland_proxy | to_json }},
+    "no-new-privileges": {{ docker_no_new_privileges | to_json }}
 }

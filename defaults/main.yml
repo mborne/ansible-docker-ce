@@ -1,9 +1,29 @@
-# /etc/docker/daemon.json parameters
+#---------------------------------------------------
+# storage
+#---------------------------------------------------
 docker_data_root: '/var/lib/docker'
 docker_storage_driver: 'overlay2'
 
-# docker_networks:
-#   - { name: 'webgateway', subnet: '192.168.150.1/24' }
+#---------------------------------------------------
+# networking
+#---------------------------------------------------
+docker_dns: []
+docker_bip: '192.168.100.1/24'
+docker_fixed_cidr: '192.168.100.1/29'
+docker_default_address_pools:
+  - {"base":"172.80.0.0/16","size":24}
+  - {"base":"172.90.0.0/16","size":24}
 
-# /usr/local/bin/docker-compose version
-docker_compose_version: '1.24.1'
+#---------------------------------------------------
+# security
+#---------------------------------------------------
+docker_icc: false
+docker_live_restore: true
+docker_userland_proxy: false
+docker_no_new_privileges: true
+
+#---------------------------------------------------
+# docker-compose
+#---------------------------------------------------
+docker_compose_enabled: true
+docker_compose_version: '1.27.4'
