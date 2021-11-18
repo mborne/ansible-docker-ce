@@ -45,9 +45,10 @@
 #-------------------------------------------------------------------------------
 # Install docker-compose
 #-------------------------------------------------------------------------------
-- name: Install docker-compose
+- name: "Install docker-compose (v{{ docker_compose_version }})"
   pip:
-    name: "docker-compose=={{ docker_compose_version }}"
+    name: "docker-compose"
+    version: "{{ docker_compose_version }}"
     state: present
   become: true
   when: docker_compose_enabled
