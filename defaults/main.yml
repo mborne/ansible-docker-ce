@@ -22,6 +22,9 @@ docker_live_restore: true
 docker_userland_proxy: false
 docker_no_new_privileges: true
 
+# example : true (equivalent to 'default') or custom user
+docker_userns_remap: false
+
 #---------------------------------------------------
 # docker-compose
 #---------------------------------------------------
