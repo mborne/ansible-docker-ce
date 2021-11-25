@@ -1,5 +1,14 @@
 ---
 
+- name: Ensure dependencies are installed.
+  apt:
+    name:
+      - apt-transport-https
+      - ca-certificates
+      - gnupg
+    state: present
+    update_cache: yes
+
 #-------------------------------------------------------------------------------
 # Install docker service
 #-------------------------------------------------------------------------------
