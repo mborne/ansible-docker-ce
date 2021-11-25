@@ -1,6 +1,6 @@
-# ansible-docker
+# ansible-docker-ce
 
-Docker installation and configuration.
+Ansible playbook to deploy and configure docker-ce.
 
 ## Usage
 
@@ -10,8 +10,8 @@ Sample `requirements.yml` :
 
 ```
 - name: docker-ce
-  src: git+https://gogs.quadtreeworld.net/ansible/docker-ce.git
-  version: v1.0.0
+  src: git+https://github.com/mborne/ansible-docker-ce.git
+  version: master
 ```
 
 Sample playbook :
@@ -33,4 +33,8 @@ For rasbperries, `aufs-dkms` should be removed to avoid problems :
 ```bash
 sudo apt-get purge aufs-dkms
 ```
+
+## License
+
+[MIT](LICENSE)
 

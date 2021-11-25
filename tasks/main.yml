@@ -1,5 +1,14 @@
 ---
 
+- name: Ensure dependencies are installed.
+  apt:
+    name:
+      - apt-transport-https
+      - ca-certificates
+      - gnupg
+    state: present
+    update_cache: yes
+
 #-------------------------------------------------------------------------------
 # Install docker service
 #-------------------------------------------------------------------------------
@@ -8,11 +17,6 @@
   apt_key:
     url: "https://download.docker.com/linux/ubuntu/gpg"
     state: present
-
-- name: 'Install "apt-transport-https" package'
-  apt:
-    name: apt-transport-https
-    update_cache: yes
 
 - name: 'Generate /etc/apt/sources.list.d/docker.list'
   template:
@@ -45,9 +49,10 @@
 #-------------------------------------------------------------------------------
 # Install docker-compose
 #-------------------------------------------------------------------------------
-- name: Install docker-compose
+- name: "Install docker-compose (v{{ docker_compose_version }})"
   pip:
-    name: "docker-compose=={{ docker_compose_version }}"
+    name: "docker-compose"
+    version: "{{ docker_compose_version }}"
     state: present
   become: true
   when: docker_compose_enabled

@@ -1,7 +1,11 @@
 {
     "data-root": "{{ docker_data_root }}",
     "storage-driver": "{{ docker_storage_driver }}",
-
+{% if docker_userns_remap is sameas true %}
+    "userns-remap": "default",
+{% elif docker_userns_remap is not sameas false %}
+    "userns-remap": {{ docker_userns_remap | to_json }},
+{% endif %}
 {% if docker_dns|length > 0 %}
     "dns": {{ docker_dns | to_json }},
 {% endif %}
