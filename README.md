@@ -1,10 +1,17 @@
 # ansible-docker-ce
 
-Ansible playbook to deploy and configure docker-ce.
+## Role Summary
 
-## Usage
+This ansible playbook allows to setup and configure docker-ce. It aims at providing a decent setup for a dev environment :
+
+* Most daemon options are defaulted to fit [docker-bench-for-security](https://github.com/docker/docker-bench-security#docker-bench-for-security) recommendations (see [doc/dbs-uncovered.md](doc/dbs-uncovered.md) for exceptions)
+* Log rotate is configured to avoid disk full
+
+## Role Variables
 
 See [defaults/main.yml](defaults/main.yml) to get the list of variables.
+
+## Example Playbooks
 
 Sample `requirements.yml` :
 
@@ -14,7 +21,7 @@ Sample `requirements.yml` :
   version: master
 ```
 
-Sample playbook :
+Sample basic playbook :
 
 ```yaml
 ---
@@ -24,6 +31,21 @@ Sample playbook :
   become_method: sudo
   roles:
     - docker-ce
+```
+
+Sample basic playbook with [userns-remap](https://docs.docker.com/engine/security/userns-remap/) and custom storage location :
+
+```yaml
+---
+- name: Install docker
+  hosts: all
+  become: yes
+  become_method: sudo
+  roles:
+    - docker-ce
+  vars:
+    docker_data_root: '/mnt/storage/docker'
+    docker_userns_remap: 'default'
 ```
 
 ## Troubleshooting

@@ -1,15 +1,27 @@
 #---------------------------------------------------
 # storage
 #---------------------------------------------------
+
+# allows to configure storage location for docker items
+# docker-bench-security - 1.1  - Ensure a separate partition for containers has been created
 docker_data_root: '/var/lib/docker'
+
+# allows to configure storage driver
+# docker-bench-security - 2.5 - Ensure aufs storage driver is not used
 docker_storage_driver: 'overlay2'
 
 #---------------------------------------------------
 # networking
 #---------------------------------------------------
+
+# allows to use custom DNS servers
 docker_dns: []
+
+# allows to configure IP range for the default bridge network
 docker_bip: '192.168.100.1/24'
+# allows to reserve an IP range for static IP allocation on the default bridge network
 docker_fixed_cidr: '192.168.100.1/29'
+# allows to configure IP ranges for other networks
 docker_default_address_pools:
   - {"base":"172.80.0.0/16","size":24}
   - {"base":"172.90.0.0/16","size":24}
@@ -18,10 +30,14 @@ docker_default_address_pools:
 # security
 #---------------------------------------------------
 docker_icc: false
+# docker-bench-security - 2.14  - Ensure live restore is Enabled
 docker_live_restore: true
+# docker-bench-security - 2.15  - Ensure Userland Proxy is Disabled
 docker_userland_proxy: false
+# docker-bench-security - 2.18  - Ensure containers are restricted from acquiring new privileges
 docker_no_new_privileges: true
 
+# docker-bench-security - 2.8  - Enable user namespace support
 # example : true (equivalent to 'default') or custom user
 docker_userns_remap: false
 
