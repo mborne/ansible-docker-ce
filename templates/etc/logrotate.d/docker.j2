@@ -1,4 +1,8 @@
-/var/lib/docker/containers/*/*.log {
+{% if docker_userns_remap is sameas false %}
+{{ docker_data_root }}/containers/*/*.log {
+{% else %}
+{{ docker_data_root }}/*/containers/*/*.log {
+{% endif %}
     rotate 7
     daily
     compress
