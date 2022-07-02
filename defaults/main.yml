@@ -41,6 +41,10 @@ docker_no_new_privileges: true
 # example : true (equivalent to 'default') or custom user
 docker_userns_remap: false
 
+# Allows to configure mirrors
+# (see https://docs.docker.com/registry/recipes/mirror/)
+docker_registry_mirrors: []
+
 #---------------------------------------------------
 # docker-compose
 #---------------------------------------------------

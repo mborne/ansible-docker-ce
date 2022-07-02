@@ -54,7 +54,6 @@
     name: "docker-compose"
     version: "{{ docker_compose_version }}"
     state: present
-  become: true
   when: docker_compose_enabled
 
 #-------------------------------------------------------------------------------

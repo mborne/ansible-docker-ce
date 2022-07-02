@@ -12,7 +12,9 @@
     "bip": "{{ docker_bip }}",
     "fixed-cidr": "{{ docker_fixed_cidr }}",
     "default-address-pools" : {{ docker_default_address_pools | to_json }},
-
+{% if docker_registry_mirrors|length > 0 %}
+    "registry-mirrors": {{ docker_registry_mirrors | to_json }},
+{% endif %}
     "icc": {{ docker_icc | to_json }},
     "live-restore": {{ docker_live_restore | to_json }},
     "userland-proxy": {{ docker_userland_proxy | to_json }},
