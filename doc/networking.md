@@ -1,6 +1,6 @@
-# networking
+# Networking with docker
 
-Avec la configuration suivante au niveau `/etc/docker/daemon.json` :
+With the following daemon config in `/etc/docker/daemon.json` :
 
 ```json
 {
@@ -12,7 +12,7 @@ Avec la configuration suivante au niveau `/etc/docker/daemon.json` :
 }
 ```
 
-* `bip` amène à la configuration suivante au niveau du `bridge` par défaut :
+* `bip` is the IP range for the default `bridge` :
 
 ```bash
 docker network inspect bridge | jq '.[0].IPAM'
@@ -29,9 +29,9 @@ docker network inspect bridge | jq '.[0].IPAM'
 }
 ```
 
-* `fixed-cidr` permet de réserver les IP `192.168.199.[0-127]` pour des allocations statiques.
+* `fixed-cidr` allows to reserve `192.168.199.[0-127]` for static IP allocation.
 
-* `default-address-pools` amène le comportement suivant au niveau de la création des réseaux nommés :
+* `default-address-pools` provides allowed IP ranges for other networks with the following behavior :
 
 ```bash
 docker network create net1

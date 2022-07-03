@@ -16,7 +16,7 @@ See [defaults/main.yml](defaults/main.yml) to get the list of variables.
 Sample `requirements.yml` :
 
 ```
-- name: docker-ce
+- name: mborne.docker-ce
   src: git+https://github.com/mborne/ansible-docker-ce.git
   version: master
 ```

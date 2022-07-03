@@ -1,5 +1,20 @@
 # docker-bench-security - uncovered items by the playbook or default values
 
+Review of the results of [docker-bench-for-security](https://github.com/docker/docker-bench-security#docker-bench-for-security) with default config :
+
+```bash
+docker run --rm --net host --pid host --userns host --cap-add audit_control \
+    -e DOCKER_CONTENT_TRUST=$DOCKER_CONTENT_TRUST \
+    -v /etc:/etc:ro \
+    -v /usr/bin/containerd:/usr/bin/containerd:ro \
+    -v /usr/bin/runc:/usr/bin/runc:ro \
+    -v /usr/lib/systemd:/usr/lib/systemd:ro \
+    -v /var/lib:/var/lib:ro \
+    -v /var/run/docker.sock:/var/run/docker.sock:ro \
+    --label docker_bench_security \
+    docker/docker-bench-security
+```
+
 ## 1 - Host Configuration
 
 * Note that you may fix this changing `data-root` that is defaulted to `/var/lib/docker` :
@@ -18,7 +33,7 @@
 
 ## 2 - Docker daemon configuration
 
-* Note that you may fix this using `docker_userns_remap: true` that is equivalent to `docker_userns_remap: 'default'` :
+* Note that you may fix this using `docker_userns_remap: 'default'` :
 
 ```
 [WARN] 2.8  - Enable user namespace support

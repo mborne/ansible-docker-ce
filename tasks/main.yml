@@ -28,6 +28,12 @@
     name: docker-ce
     update_cache: yes
 
+- name: Install "docker-compose-plugin" package
+  apt:
+    name: "docker-compose-plugin"
+    state: present
+  when: docker_compose_plugin_enabled
+
 #-------------------------------------------------------------------------------
 # Install ansible requirements
 #-------------------------------------------------------------------------------
@@ -45,16 +51,6 @@
   pip:
     name: "docker"
     state: present
-
-#-------------------------------------------------------------------------------
-# Install docker-compose
-#-------------------------------------------------------------------------------
-- name: "Install docker-compose (v{{ docker_compose_version }})"
-  pip:
-    name: "docker-compose"
-    version: "{{ docker_compose_version }}"
-    state: present
-  when: docker_compose_enabled
 
 #-------------------------------------------------------------------------------
 # configure docker daemon
