@@ -10,7 +10,7 @@
     update_cache: yes
 
 #-------------------------------------------------------------------------------
-# Install docker service
+# Configure apt and install docker packages
 #-------------------------------------------------------------------------------
 
 - name: 'Install apt.dockerproject.org key'
@@ -51,6 +51,13 @@
   pip:
     name: "docker"
     state: present
+
+- name: "Install docker-compose (v{{ docker_compose_version }})"
+  pip:
+    name: "docker-compose"
+    version: "{{ docker_compose_version }}"
+    state: present
+  when: docker_compose_enabled
 
 #-------------------------------------------------------------------------------
 # configure docker daemon
