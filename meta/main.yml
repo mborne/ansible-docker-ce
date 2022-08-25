@@ -5,9 +5,9 @@ galaxy_info:
   author: mborne
   company: none
   description: docker-ce
-  issue_tracker_url: https://gogs.quadtreeworld.net/ansible/docker-ce/issues
+  issue_tracker_url: https://github.com/mborne/ansible-docker-ce/issues
   license: "MIT"
-  min_ansible_version: 2.4
+  min_ansible_version: "2.4"
   platforms:
   - name: Debian
     versions:
