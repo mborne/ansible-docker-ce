@@ -6,6 +6,7 @@
       - apt-transport-https
       - ca-certificates
       - gnupg
+      - lsb-release
     state: present
     update_cache: yes
 
