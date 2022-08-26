@@ -1,5 +1,7 @@
 # ansible-docker-ce
 
+[![CI](https://github.com/mborne/ansible-docker-ce/actions/workflows/ci.yml/badge.svg)](https://github.com/mborne/ansible-docker-ce/actions/workflows/ci.yml)
+
 ## Role Summary
 
 This ansible playbook allows to setup and configure docker-ce. It aims at providing a decent setup for a dev environment :
