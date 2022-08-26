@@ -1,0 +1,14 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+platforms:
+  - name: instance
+    image: "geerlingguy/docker-${MOLECULE_DISTRO:-ubuntu2004}-ansible:latest"
+    # we don't need ansible installed on the instance
+    pre_build_image: false
+provisioner:
+  name: ansible
+verifier:
+  name: ansible

@@ -62,6 +62,13 @@
 #-------------------------------------------------------------------------------
 # configure docker daemon
 #-------------------------------------------------------------------------------
+- name: "Create /etc/docker if not exists"
+  ansible.builtin.file:
+    path: /etc/docker
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
 
 - name: 'Generate /etc/docker/daemon.json'
   template:
