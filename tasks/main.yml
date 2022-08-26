@@ -10,6 +10,10 @@
     state: present
     update_cache: yes
 
+# lsb-release required
+- name: Refresh ansible_lsb facts
+  setup: filter=ansible_lsb*
+
 #-------------------------------------------------------------------------------
 # Configure apt and install docker packages
 #-------------------------------------------------------------------------------
