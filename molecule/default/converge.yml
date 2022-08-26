@@ -1,0 +1,8 @@
+---
+- name: Converge
+  hosts: all
+
+  tasks:
+    - name: "Include mborne.docker_ce"
+      include_role:
+        name: "mborne.docker_ce"

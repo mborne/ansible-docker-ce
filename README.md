@@ -16,7 +16,7 @@ See [defaults/main.yml](defaults/main.yml) to get the list of variables.
 Sample `requirements.yml` :
 
 ```
-- name: mborne.docker-ce
+- name: mborne.docker_ce
   src: git+https://github.com/mborne/ansible-docker-ce.git
   version: master
 ```
@@ -30,7 +30,7 @@ Sample basic playbook :
   become: yes
   become_method: sudo
   roles:
-    - docker-ce
+    - mborne.docker_ce
 ```
 
 Sample basic playbook with [userns-remap](https://docs.docker.com/engine/security/userns-remap/) and custom storage location :
@@ -42,7 +42,7 @@ Sample basic playbook with [userns-remap](https://docs.docker.com/engine/securit
   become: yes
   become_method: sudo
   roles:
-    - docker-ce
+    - mborne.docker_ce
   vars:
     docker_data_root: '/mnt/storage/docker'
     docker_userns_remap: 'default'
@@ -55,6 +55,10 @@ For rasbperries, `aufs-dkms` should be removed to avoid problems :
 ```bash
 sudo apt-get purge aufs-dkms
 ```
+
+## See also
+
+* [geerlingguy.docker](https://galaxy.ansible.com/geerlingguy/docker)
 
 ## License
 

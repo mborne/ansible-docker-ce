@@ -2,26 +2,20 @@
 dependencies: []
 
 galaxy_info:
+  role_name: docker_ce
   author: mborne
-  company: none
   description: docker-ce
+  company: none
   issue_tracker_url: https://github.com/mborne/ansible-docker-ce/issues
   license: "MIT"
-  min_ansible_version: "2.4"
+  min_ansible_version: "2.8"
   platforms:
   - name: Debian
     versions:
-      - wheezy
-      - jessie
-      - stretch
-      - buster
+      - all
   - name: Ubuntu
     versions:
-      - trusty
-      - artful
-      - xenial
-      - bionic
-      - cosmic
+      - all
   galaxy_tags:
     - docker
     - containers

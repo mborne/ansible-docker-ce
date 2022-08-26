@@ -1,0 +1,22 @@
+---
+
+- name: Verify
+  hosts: all
+  gather_facts: false
+  tasks:
+  - name: Get /etc/docker/daemon.json file infos
+    stat:
+      path: /etc/docker/daemon.json
+    register: daemon_result
+
+  - name: Check that /etc/docker/daemon.json file exists
+    ansible.builtin.assert:
+      that: daemon_result.stat.exists
+
+  - name: Read /etc/docker/daemon.json
+    set_fact:
+      daemon_config: "{{ lookup('file','/etc/docker/daemon.json') | from_json }}"
+
+  - name: Check that default "storage-driver" is "overlay2"
+    ansible.builtin.assert:
+      that: "'overlay2' == daemon_config['storage-driver']"
