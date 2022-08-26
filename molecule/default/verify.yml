@@ -14,8 +14,12 @@
       that: daemon_result.stat.exists
 
   - name: Read /etc/docker/daemon.json
+    shell: "cat /etc/docker/daemon.json"
+    register: daemon_content
+
+  - name: Parse /etc/docker/daemon.json content
     set_fact:
-      daemon_config: "{{ lookup('file','/etc/docker/daemon.json') | from_json }}"
+      daemon_config: "{{ daemon_content.stdout | from_json }}"
 
   - name: Check that default "storage-driver" is "overlay2"
     ansible.builtin.assert:
