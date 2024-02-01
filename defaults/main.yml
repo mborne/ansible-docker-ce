@@ -46,12 +46,6 @@ docker_userns_remap: false
 docker_registry_mirrors: []
 
 #---------------------------------------------------
-# docker-compose (deprecated, installed with pip)
-#---------------------------------------------------
-docker_compose_enabled: false
-docker_compose_version: '1.29.2'
-
-#---------------------------------------------------
 # docker compose
 #---------------------------------------------------
 docker_compose_plugin_enabled: true

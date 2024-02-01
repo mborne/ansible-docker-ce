@@ -40,31 +40,6 @@
   when: docker_compose_plugin_enabled
 
 #-------------------------------------------------------------------------------
-# Install ansible requirements
-#-------------------------------------------------------------------------------
-
-- name: Install "python3-pip" package
-  apt:
-    name: python3-pip
-
-- name: Uninstall old python module for docker
-  pip:
-    name: "docker-py"
-    state: absent
-
-- name: Install python module for docker
-  pip:
-    name: "docker"
-    state: present
-
-- name: "Install docker-compose (v{{ docker_compose_version }})"
-  pip:
-    name: "docker-compose"
-    version: "{{ docker_compose_version }}"
-    state: present
-  when: docker_compose_enabled
-
-#-------------------------------------------------------------------------------
 # configure docker daemon
 #-------------------------------------------------------------------------------
 - name: "Create /etc/docker if not exists"

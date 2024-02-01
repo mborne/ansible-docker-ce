@@ -1,8 +1,11 @@
 # {{ ansible_managed }}
+# dist : {{ ansible_distribution }}
 # arch : {{ ansible_architecture }}
 
 {% if ansible_architecture == "x86_64" %}
 deb [arch=amd64] https://download.docker.com/linux/{{ ansible_distribution|lower }} {{ ansible_lsb.codename|lower }} stable
+{% elif ansible_architecture == "aarch64" %}
+deb [arch=arm64] https://download.docker.com/linux/{{ ansible_distribution|lower }} {{ ansible_lsb.codename|lower }} stable
 {% else %}
-deb https://download.docker.com/linux/raspbian/ {{ ansible_lsb.codename|lower }} stable
+deb https://download.docker.com/linux/{{ ansible_distribution|lower }} {{ ansible_lsb.codename|lower }} stable
 {% endif %}
