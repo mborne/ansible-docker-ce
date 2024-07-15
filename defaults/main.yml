@@ -55,8 +55,18 @@ docker_no_new_privileges: true
 docker_userns_remap: false
 
 # Allows to configure mirrors
-# (see https://docs.docker.com/registry/recipes/mirror/)
+# (see https://docs.docker.com/registry/recipes/mirror/ )
 docker_registry_mirrors: []
+
+# Allows to configure logging
+# (see https://docs.docker.com/config/containers/logging/configure/ )
+docker_log_driver: 'json-file'
+docker_log_opts: {}
+# docker_log_opts:
+#   max-size: "10m"
+#   max-file: "3"
+#   labels: "production_status"
+#   env: "os,customer"
 
 #---------------------------------------------------
 # docker compose

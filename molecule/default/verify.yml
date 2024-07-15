@@ -24,3 +24,7 @@
   - name: Check that default "storage-driver" is "overlay2"
     ansible.builtin.assert:
       that: "'overlay2' == daemon_config['storage-driver']"
+
+  - name: Check that default "log-driver" is "json-file"
+    ansible.builtin.assert:
+      that: "'json-file' == daemon_config['log-driver']"
